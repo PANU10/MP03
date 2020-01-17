@@ -13,12 +13,6 @@ public class Films {
     @XmlElement(name = "FILM")
     public List<Film> film;
 
-    @Override
-    public String toString() {
-        return "Films{" +
-                "film=" + film +
-                '}';
-    }
 }
 
 class Film {
@@ -38,7 +32,12 @@ class Film {
     @XmlElement(name = "ORIGINAL")
     private String original;
 
+    @XmlElement(name = "DIRECCIO")
+    private String direccio;
 
+    public String getDireccio() {
+        return direccio;
+    }
     public String getTitol() {
         return titol;
     }
@@ -61,12 +60,11 @@ class Film {
 
     @Override
     public String toString() {
-        return "Film{" +
-                "fimlid=" + fimlid +
-                ", prioritat=" + prioritat +
-                ", any=" + any +
-                ", titol=" + titol +
-                ", original=" + original +
-                '}';
+        return "fimlid = " + fimlid +
+                "\nprioritat = " + prioritat +
+                "\nany = " + any +
+                "\ntitol = " + titol +
+                "\noriginal = " + original +
+                "\ndirector = " + direccio;
     }
 }

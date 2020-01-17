@@ -24,10 +24,14 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+import java.util.stream.Stream;
 
 public class JAXBParsearFilms {
 
-    List<Film> films;
+    static List<Film> filmList;
+    static Scanner tex = new Scanner(System.in);
+    static long contador;
 
     public JAXBParsearFilms() throws JAXBException, IOException {
         URL url = new URL("http://gencat.cat/llengua/cinema/provacin.xml");
@@ -36,10 +40,26 @@ public class JAXBParsearFilms {
         InputStream is = http.getInputStream();
         JAXBContext jaxbContext = JAXBContext.newInstance(Films.class);
         Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-        this.films = ((Films)jaxbUnmarshaller.unmarshal(is)).film;
+        filmList = ((Films)jaxbUnmarshaller.unmarshal(is)).film;
     }
 
-    public List<Film> getFilms() {
-        return films;
+    public static void buscarPorTitulo(String buscar){
+        System.out.println();
+        filmList.stream()
+                .filter(p -> p.getTitol().contains(buscar))
+                .forEach(System.out::println);
     }
+
+    public static void buscarPorDirector(String buscar){
+        filmList.stream()
+                .filter(p -> p.getDireccio().equals(buscar))
+                .forEach(System.out::println);
+
+        contador = filmList.stream()
+                .filter(p -> p.getDireccio().contains(buscar))
+                .count();
+        System.out.println("\nHay " + contador +" peliculas.");
+    }
+
+
 }
