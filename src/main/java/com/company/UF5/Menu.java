@@ -1,9 +1,6 @@
 package com.company.UF5;
-
-
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
-import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
@@ -11,41 +8,65 @@ public class Menu {
     Scanner scanner = new Scanner(System.in);
     String input;
 
+    int id;
+
     public Menu() throws JAXBException, IOException {
     }
 
     public void show() {
         Scanner tex = new Scanner(System.in);
+
         System.out.println("-----------------------");
-        System.out.println("1. Buscar por titulo.");
-        System.out.println("2. Buscar por director.");
-        System.out.println("3. Buscar por id.");
-        System.out.println("4. Buscar por prioridad.");
-        System.out.println("5. Buscar por original.");
-        System.out.println("-----------------------");
+        System.out.println("1. Por qué campo queremos buscar, título, director, año, etc");
+        System.out.println("2. Que dé la opción de saber cuántas películas de un determinado director aparecen.");
+        System.out.println("3. Cuántos títulos una determinada palabra aparece.");
+        System.out.println("4. Cuántas veces un director y un intérprete coinciden");
+        System.out.println("5. Películas donde aparezcan los intérpretes que seleccionas");
+        System.out.println("6. Buscar cuántos tipos diferentes de idiomas hay");
+        System.out.println("7. Todas las peliculas qu");
+        System.out.println("etc..");
+        System.out.println("----------------------- \n");
 
         int opcion = tex.nextInt();
         if (opcion != 0) {
             switch (opcion) {
                 case 1:
-                    System.out.println("Escribe el nombre de la pelicula: ");
+                    id = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.println("Escribe el tìtulo de la pelicula: ");
                     input = scanner.nextLine();
-                    jaxbParsearFilms.buscarPorTitulo(input);
+                    jaxbParsearFilms.consulta1(input);
                     break;
 
                 case 2:
                     System.out.println("Escribe el nombre del Director: ");
                     input = scanner.nextLine();
-                    jaxbParsearFilms.buscarPorDirector(input);
+                    jaxbParsearFilms.consulta2(input);
                     break;
 
                 case 3:
-                    System.out.println("Opcion 3");
-                    break;
+                    System.out.println("Escribe el nombre del título: ");
+                    input = scanner.nextLine();
+                    jaxbParsearFilms.consulta3(input);
 
                 case 4:
-                    System.out.println("Opcion 4");
+                    System.out.println("Introduce un ID: ");
+                    id = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.println("Escribe el nombre del título: ");
+                    input = scanner.nextLine();
+                    jaxbParsearFilms.consulta4(id, input);
                     break;
+
+                case 5:
+                    System.out.println("Escribe el nombre del interprete: ");
+                    input = scanner.nextLine();
+                    jaxbParsearFilms.consulta5(input);
+                    break;
+
+                case 6:
+                    System.out.println("Idiomas que esatan disponible: ");
+                    jaxbParsearFilms.consulta6();
 
                 default:
                     System.out.println("Opción incorrecta");

@@ -4,6 +4,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import javax.crypto.spec.PSource;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
@@ -25,6 +26,8 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class JAXBParsearFilms {
@@ -43,23 +46,56 @@ public class JAXBParsearFilms {
         filmList = ((Films)jaxbUnmarshaller.unmarshal(is)).film;
     }
 
-    public static void buscarPorTitulo(String buscar){
-        System.out.println();
+    public static void consulta1(String buscar){
         filmList.stream()
                 .filter(p -> p.getTitol().contains(buscar))
                 .forEach(System.out::println);
     }
 
-    public static void buscarPorDirector(String buscar){
+    public static void consulta2(String buscar){
         filmList.stream()
                 .filter(p -> p.getDireccio().equals(buscar))
                 .forEach(System.out::println);
-
         contador = filmList.stream()
                 .filter(p -> p.getDireccio().contains(buscar))
                 .count();
         System.out.println("\nHay " + contador +" peliculas.");
     }
 
+    public static void consulta3(String buscar){
+        contador = filmList.stream()
+                .filter(p -> p.getTitol().contains(buscar))
+                .count();
+        System.out.println("\nHay " + contador +" titulos.");
+    }
+
+    public static void consulta4(int id, String titulo){
+
+        filmList.stream()
+                .filter(p -> p.getDireccio().equals(id) && p.getTitol().contains(titulo))
+                .forEach(System.out::println);
+
+        contador = filmList.stream()
+                .filter(p -> p.getFimlid()==(id) && p.getTitol().contains(titulo))
+                .count();
+        System.out.println(contador);
+    }
+
+    public  static void consulta5(String buscar){
+        filmList.stream()
+                .filter(p -> p.getInterprets().contains(buscar))
+                .forEach(System.out::println);
+    }
+    public static void consulta6(){
+        filmList.stream()
+                .distinct()
+                .forEach(film -> System.out.println(film.getIdioma()));
+    }
+
+    public  static void consulta7(int anio){
+        filmList.stream()
+                .filter(film -> film.getAny()==anio);
+
+    }
 
 }
