@@ -16,7 +16,7 @@ public class Films {
 
 }
 
-class Film {
+class Film implements Comparable<Film> {
 
     @XmlElement(name = "IDFILM")
     private int fimlid;
@@ -87,12 +87,20 @@ class Film {
 
     @Override
     public String toString() {
-        return "fimlid = " + fimlid +
-                "\nprioritat = " + prioritat +
-                "\nany = " + any +
-                "\ntitol = " + titol +
-                "\noriginal = " + original +
-                "\ndirector = " + direccio +
-                "\ninterprests = " + interprets;
+        return "Film{" +
+                "fimlid=" + fimlid +
+                ", prioritat=" + prioritat +
+                ", any=" + any +
+                ", titol='" + titol + '\'' +
+                ", original='" + original + '\'' +
+                ", direccio='" + direccio + '\'' +
+                ", interprets='" + interprets + '\'' +
+                ", idioma='" + idioma + '\'' +
+                '}';
+    }
+
+    @Override
+    public int compareTo(Film film) {
+        return this.getIdioma().compareTo(film.idioma);
     }
 }

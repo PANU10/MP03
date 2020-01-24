@@ -1,5 +1,6 @@
 package com.company.UF5;
 import javax.xml.bind.JAXBException;
+import javax.xml.bind.SchemaOutputResolver;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -23,9 +24,10 @@ public class Menu {
         System.out.println("4. Cuántas veces un director y un intérprete coinciden");
         System.out.println("5. Películas donde aparezcan los intérpretes que seleccionas");
         System.out.println("6. Buscar cuántos tipos diferentes de idiomas hay");
-        System.out.println("7. Todas las peliculas qu");
-        System.out.println("etc..");
-        System.out.println("----------------------- \n");
+        System.out.println("7. Todas las peliculas con 3 idiomas y mas.");
+        System.out.println("-----------------------");
+
+        System.out.println("Elige una opción: ");
 
         int opcion = tex.nextInt();
         if (opcion != 0) {
@@ -67,8 +69,13 @@ public class Menu {
                 case 6:
                     System.out.println("Idiomas que esatan disponible: ");
                     jaxbParsearFilms.consulta6();
+                    break;
 
-                default:
+                case 7:
+                    jaxbParsearFilms.consulta7();
+                    break;
+
+                    default:
                     System.out.println("Opción incorrecta");
                     break;
             }

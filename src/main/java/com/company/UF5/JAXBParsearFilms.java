@@ -25,6 +25,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -86,16 +87,29 @@ public class JAXBParsearFilms {
                 .filter(p -> p.getInterprets().contains(buscar))
                 .forEach(System.out::println);
     }
-    public static void consulta6(){
+    public static void consulta6() {
         filmList.stream()
                 .distinct()
                 .forEach(film -> System.out.println(film.getIdioma()));
     }
 
-    public  static void consulta7(int anio){
+    public  static void consulta7(){
+        //todas las peliculas con 3 idiomas y mas
         filmList.stream()
-                .filter(film -> film.getAny()==anio);
-
+                .filter(film -> {
+                    if (buscarComas(film.getIdioma()) > 0) return true;
+                    return false;
+                })
+                .sorted().collect(Collectors.toList())
+                .forEach(film -> System.out.println(film));
     }
 
+
+    public static int buscarComas(String parrafo){
+        int count = 0;
+        for(char c : parrafo.toCharArray()){
+            if (c == ',') count++;
+        }
+        return count;
+    }
 }
