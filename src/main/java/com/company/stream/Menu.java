@@ -1,6 +1,5 @@
-package com.company.UF5;
+package com.company.stream;
 import javax.xml.bind.JAXBException;
-import javax.xml.bind.SchemaOutputResolver;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -33,8 +32,6 @@ public class Menu {
         if (opcion != 0) {
             switch (opcion) {
                 case 1:
-                    id = scanner.nextInt();
-                    scanner.nextLine();
                     System.out.println("Escribe el tìtulo de la pelicula: ");
                     input = scanner.nextLine();
                     jaxbParsearFilms.consulta1(input);

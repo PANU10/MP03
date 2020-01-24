@@ -1,4 +1,4 @@
-package com.company.UF5;
+package com.company.stream;
 
 import java.io.*;
 import java.util.regex.Matcher;

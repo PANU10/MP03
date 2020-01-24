@@ -1,4 +1,4 @@
-package com.company.UF5;
+package com.company.stream;
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
 
